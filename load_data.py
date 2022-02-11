@@ -15,10 +15,21 @@ def main():
         rows_to_skip = 0
         print(f'Got something else than EC-Lab ASCII FILE, no rows skipped.')
 
-    data = pd.read_csv(f'{filename}', encoding="ISO-8859-1", skiprows=rows_to_skip, sep='\t')[['time/s', 'control/V', 'Ewe/V', 'I/mA']]
+    # Check label for current column (for CV is different than for CA)
+    labels = open(filename).readlines()[rows_to_skip]
+    if labels.__contains__('I/mA'):
+        label_I = 'I/mA'
+    elif labels.__contains__('<I>/mA'):
+        label_I = '<I>/mA'
+        print(f'Changed column header for current from {label_I} to I/mA')
+
+    data = pd.read_csv(f'{filename}', encoding="ISO-8859-1", skiprows=rows_to_skip, sep='\t')[['time/s', 'control/V', 'Ewe/V', label_I]]\
+        .rename(columns={'<I>/mA': 'I/mA'})
 
     print(f'Loaded data from file {filename}, here you have some info:\n{data.info}')
     print(f'Much more info:\n{data.describe()}\n')
     print(f'Memory usage for each column (in bytes):\n{data.memory_usage()}')
     print(f'Together, it is {data.memory_usage(index=True).sum()/1024} MB\n')
-    #return data
+    return data
+
+del(main)
