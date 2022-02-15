@@ -8,8 +8,6 @@ load_data.py – loads data either from file (give path with „/”) or from pa
 
 save_data.py – saves data from given global variable (pandas dataframe) as a file (for some reason project needs some time to refresh)
 
-plot_time_ctrlV_I.py - plots either global variable (pandas dataframe) or data from file. Ewe/V and I/mA is a function of time/s
-
 assign_states_and_cycles.py – takes „data” dataframe (global var) and assigns state and cycle according to sequence. In practice it checks the change when control/V changes, then loops state assignment
 
 assign_cycle_CV.py - takes "data" dataframe (global var) and assigns cycles according to the sign change of the control/V value (every 2 changes of sign, cycle += 1).
@@ -19,6 +17,8 @@ extract_on_off.py – for each cycle take all read_set and read_reset points and
 cut/rm_data_by_plot.py – cuts/removes part of data according to clickable plot
 
 cut/rm_data_by_time_range.py – cuts/removes part of data according to given ranges
+
+plot_time_ctrlV_I.py - plots either global variable (pandas dataframe) or data from file. Ewe/V and I/mA is a function of time/s
 
 plot_on_off.py – similar but I_set/mA and I_reset/mA is a function of cycle
 
