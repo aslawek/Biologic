@@ -1,3 +1,7 @@
 *
 */
 !.gitignore
+
+# includes test data
+!test_CA.mpt
+!test_CV.mpt

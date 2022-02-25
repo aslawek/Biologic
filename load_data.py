@@ -26,6 +26,16 @@ def main():
     data = pd.read_csv(f'{filename}', encoding="ISO-8859-1", skiprows=rows_to_skip, sep='\t')[['time/s', 'control/V', 'Ewe/V', label_I]]\
         .rename(columns={'<I>/mA': 'I/mA'})
 
+    # Change . for , if needed:
+    if data['time/s'].dtypes == object:
+        data['time/s'] = data['time/s'].str.replace(',', '.').astype(float)
+    if data['control/V'].dtypes == object:
+        data['control/V'] = data['control/V'].str.replace(',', '.').astype(float)
+    if data['Ewe/V'].dtypes == object:
+        data['Ewe/V'] = data['Ewe/V'].str.replace(',', '.').astype(float)
+    if data['I/mA'].dtypes == object:
+        data['I/mA'] = data['I/mA'].str.replace(',', '.').astype(float)
+
     print(f'Loaded data from file {filename}, here you have some info:\n{data.info}')
     print(f'Much more info:\n{data.describe()}\n')
     print(f'Memory usage for each column (in bytes):\n{data.memory_usage()}')
