@@ -28,9 +28,10 @@ def main(data):
     read_V = float(input('Give me the value of control/V to filter: '))
     err_V = 0.01
 
-    print(f'I filtered your data according to control/V, from {read_V - err_V} to {read_V + err_V} :)')
+    data_filtered = data.loc[(data['control/V'] > read_V - err_V) & (data['control/V'] < read_V + err_V)].reset_index()
 
-    data_filtered = data.loc[(data['control/V'] > read_V - err_V) & (data['control/V'] < read_V + err_V)]
+    print(f'I just filtered your data according to control/V, from {read_V - err_V} to {read_V + err_V} :)')
+    print(f'Filtered data: \n {data_filtered}')
 
     return data_filtered
 
