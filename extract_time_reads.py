@@ -19,7 +19,7 @@ def main(data_filtered):
     data_time_reads = pd.DataFrame({'cycle': pd.Series(dtype='int32'), 'I_odd/mA': pd.Series(dtype='float64'), 'I_even/mA': pd.Series(dtype='float64')})
 
     for cycle in range(int(data_filtered['cycle'].max() / 2)):
-        print(f'Working on cycle {cycle} out of {int(data_filtered["cycle"].max() / 2)}:\n\tI_odd/mA  is taken from data_filtered cycle: {cycle * 2 + 1}\n\tI_even/mA is taken from data_filtered cycle: {cycle * 2 + 2}')
+        print(f'Working on cycle {cycle + 1} out of {int(data_filtered["cycle"].max() / 2 + 1)}:\n\tI_odd/mA  is taken from data_filtered cycle: {cycle * 2 + 1}\n\tI_even/mA is taken from data_filtered cycle: {cycle * 2 + 2}')
 
         data_time_reads = data_time_reads.append({
             'cycle': cycle + 1,
