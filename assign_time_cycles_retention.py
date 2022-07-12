@@ -14,7 +14,7 @@ main = lambda f: f(data)
 @main
 def main(data):
     # Put your sequence here:
-    sequence = ['bias', 'set', 'bias', 'read_set', 'bias', 'reset', 'bias', 'read_reset']
+    sequence = ['bias', 'read']
 
     print('Hi! I will assign states and group them into cycles according to the sequence:')
     for i in range(len(sequence)):
