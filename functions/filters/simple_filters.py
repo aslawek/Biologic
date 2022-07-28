@@ -11,3 +11,17 @@ def filter_by_cycles(data, ranges):
         raise TypeError("filter_by_cycles: I filtered to empty dataset, check ranges.")
     else:
         return data_filtered
+
+def filter_by_voltage_value(data, filter_V):
+    data_filtered = data.loc[data['control/V'] == filter_V]
+    if len(data_filtered) == 0:
+        raise TypeError("filter_by_cycles: I filtered to empty dataset, check ranges.")
+    else:
+        return data_filtered
+
+def filter_by_voltage_range(data, filter_V, err_V=0.001):
+    data_filtered = data.loc[(data['control/V'] <= filter_V + err_V) & (data['control/V'] >= filter_V - err_V)]
+    if len(data_filtered) == 0:
+        raise TypeError("filter_by_cycles: I filtered to empty dataset, check ranges.")
+    else:
+        return data_filtered

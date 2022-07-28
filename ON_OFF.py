@@ -1,16 +1,17 @@
 from functions.data_managment.loaders import *
-from functions.data_managment.savers import *
-from functions.filters.simple_filters import *
+from functions.data_managment.savers import saver_data, saver_on_offs
 from functions.assigners.assign_states_cycles_on_off import assign_on_off_by_sequence
-from functions.plotters.plot_CVs import *
+from functions.extractors.extract_on_offs import extract_on_offs
+from functions.plotters.plot_SRDP import plotter_CA_simple
+from functions.plotters.plot_on_off import plotter_on_offs
 
 # sth similar to IIFE
 main = lambda f: f()
 @main
 def main():
     global data
-    print('\n \tSTARTING CV.py script...')
-    print('\nThis is more automated script for dealing with CVs. Please list your CVs (list_filenames) or type a path...')
+    print('\n \tSTARTING ON_OFF.py script...')
+    print('\nThis is more automated script for dealing with ON-OFFs. Please list your CAs (list_filenames) or type a path...')
 
     # Here you put list of files with CV data. If it is empty it will ask for path.
     list_filenames = [
@@ -21,11 +22,12 @@ def main():
     sequence = ['bias', 'set', 'bias', 'read_set', 'bias', 'reset', 'bias', 'read_reset']
     #sequence = ['bias', 'set', 'read_set', 'bias', 'reset', 'read_reset']
 
-    filter_by_cycles_ranges = []        # <- here put pairs of ranges for filtering cycles (leave [] if not neccesary)
-    save_data = False
+    save_data = False           # <- for saving data (as out_{filename})
+    save_on_offs = False        # <- for saving on-offs (as ON-OFF_{filename})
 
     # For plotting:
     plot_CA_simple = True
+    plot_on_offs = True
 
     if len(list_filenames) == 0:
         list_filenames.append(input('\nNo element found in list_data, please give me a path to Your data: '))
@@ -40,22 +42,23 @@ def main():
             print('\033[93m' + f'\nNo data found for {filename}. Skipping...\n' + '\x1b[0m')
             continue
 
-        # Assigning states for CV data
-        data = assign_on_off_by_sequence(data)
+        # Assigning states for ON-OFFs data
+        data = assign_on_off_by_sequence(data, sequence)
 
-        print(data)
-
-        # Filtering over cycles
-        if filter_by_cycles_ranges != []:
-            data = filter_by_cycles(data, filter_by_cycles_ranges)
+        # Extract states for ON-OFFs
+        on_offs = extract_on_offs(data)
 
         print(f'Here\'s what it look like:\n{data}')
 
         if save_data == True:
-            save_data(data, filename)
+            saver_data(data, filename)
+
+        if save_on_offs == True:
+            saver_on_offs(on_offs, filename)
 
         # Plotting data
-        #plotter_CV_simple(data, filename) if plot_CV_simple == True else None
+        plotter_CA_simple(data, filename) if plot_CA_simple == True else None
+        plotter_on_offs(on_offs, filename) if plot_on_offs == True else None
 
     return data
 

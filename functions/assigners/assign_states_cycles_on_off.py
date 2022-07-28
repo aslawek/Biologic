@@ -1,10 +1,6 @@
 import numpy as np
 
-def assign_on_off_by_sequence(data):
-    # Put your sequence here:
-    sequence = ['bias', 'set', 'bias', 'read_set', 'bias', 'reset', 'bias', 'read_reset']
-    #sequence = ['bias', 'set', 'read_set', 'bias', 'reset', 'read_reset']
-
+def assign_on_off_by_sequence(data, sequence):
     print('Hi! I will assign states and group them into cycles according to the sequence:')
     for i in range(len(sequence)):
         print(f'{i+1}\t{sequence[i]}')
@@ -16,5 +12,3 @@ def assign_on_off_by_sequence(data):
     for i in range(len(sequence)):
         data['state'].replace({i: sequence[i]}, inplace=True)
     return data
-
-del(main)

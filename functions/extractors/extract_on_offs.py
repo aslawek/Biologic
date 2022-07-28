@@ -10,6 +10,4 @@ def extract_on_offs(data):
         data_on_off = data_on_off.append({'cycle': cycle + 1,
                                           'I_set/mA'  : data.loc[(data['cycle'] == cycle + 1) & (data['state'] == 'read_set'  )]['I/mA'].median(),
                                           'I_reset/mA': data.loc[(data['cycle'] == cycle + 1) & (data['state'] == 'read_reset')]['I/mA'].median()}, ignore_index=True)
-
-    print(f'\n{data_on_off}')
     return data_on_off

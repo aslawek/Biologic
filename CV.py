@@ -1,67 +1,67 @@
-import numpy as np
-import pandas as pd
-from plotters.plot_CVs import plot_CVs
+from functions.data_managment.loaders import *
+from functions.data_managment.savers import saver_data
+from functions.filters.simple_filters import *
+from functions.assigners.assign_cycles_CV import assign_cycles_CV
+from functions.plotters.plot_CVs import *
 
 # sth similar to IIFE
 main = lambda f: f()
 @main
 def main():
     global data
-    print('\nThis is more automated function for dealing with CVs. Please list your CVs (list_inputs) or type a path...')
+    print('\n \tSTARTING CV.py script...')
+    print('\nThis is more automated script for dealing with CVs. Please list your CVs (list_filenames) or type a path...')
 
-    assign_cycles = False
-    plot_data = True
-    save_data = False
-
+    # Here you put list of files with CV data. If it is empty it will ask for path.
     list_filenames = [
-        'data/test_CV_just_one.mpt'
+        'data/test_CV.mpt'
     ]
+
+    assign_cycles = True                # <- number cycles of CV
+    filter_by_cycles_ranges = []        # <- here put pairs of ranges for filtering cycles (leave [] if not neccesary)
+    save_data = False                   # <- for saving data (as out_{filename})
+
+    # For plotting:
+    plot_CV_simple = True
+    plot_CV_simple_with_log_scale = True
+    plot_CV_cycles = True
+    plot_CV_cycles_with_log_scale = True
+    plot_CV_direction = True
+    plot_CV_direction_cycles = True
 
     if len(list_filenames) == 0:
         list_filenames.append(input('\nNo element found in list_data, please give me a path to Your data: '))
 
     for index, filename in enumerate(list_filenames):
-        ### LOADING DATA ###
+        print(f'Loading data {index + 1} of {len(list_filenames)} from file {filename}')
 
-        # If you load "raw" Biologic .mpt then it will automatically find how many rows have to be skipped
-        if open(filename).readline().rstrip('\n') == 'EC-Lab ASCII FILE':
-            rows_to_skip = int(open(filename).readlines()[1].split()[-1]) - 1
-            print(f'Got raw EC-Lab ASCII FILE, skipping {rows_to_skip} rows...')
-        else:
-            rows_to_skip = 0
-            print(f'Got something else than EC-Lab ASCII FILE, no rows skipped.')
+        # Load the data
+        data = load_from_mpt(filename)
 
-        # Check label for current column (for CV is different than for CA)
-        labels = open(filename).readlines()[rows_to_skip]
-        if labels.__contains__('I/mA'):
-            label_I = 'I/mA'
-        elif labels.__contains__('<I>/mA'):
-            label_I = '<I>/mA'
-            print(f'Changed column header for current from {label_I} to I/mA')
-
-        data = pd.read_csv(f'{filename}', encoding="ISO-8859-1", skiprows=rows_to_skip, sep='\t')[
-            ['time/s', 'control/V', 'Ewe/V', label_I]] \
-            .rename(columns={'<I>/mA': 'I/mA'})
-
-        # Change '.' for "," for all columns (if needed):
-        for column in data:
-            if data[column].dtype == object:
-                data[column] = data[column].str.replace(',', '.').astype(float)
-
-        print(f'Loaded data {index + 1} of {len(list_filenames)} from file {filename}')
+        if len(data) == 0:
+            print('\033[93m' + f'\nNo data found for {filename}. Skipping...\n' + '\x1b[0m')
+            continue
 
         # Assigning states for CV data
         if assign_cycles == True:
-            print('Hi! I will assign cycles to your CV data.')
-            # Drop (remove) last row no to have empty (1-point) last CV cycle
-            data.drop(data.tail(1).index, inplace=True)
-            data['cycle'] = np.ceil(np.sign(data['control/V']).diff().ne(0).astype('int').cumsum() / 2).astype('int')
+            data = assign_cycles_CV(data)
+
+        # Filtering over cycles
+        if filter_by_cycles_ranges != []:
+            data = filter_by_cycles(data, filter_by_cycles_ranges)
 
         print(f'Here\'s what it look like:\n{data}')
 
+        if save_data == True:
+            saver_data(data, filename)
+
         # Plotting data
-        if plot_data == True:
-            plot_CVs(data, filename)
+        plotter_CV_simple(data, filename) if plot_CV_simple == True else None
+        plotter_CV_simple_with_log(data, filename) if plot_CV_simple_with_log_scale == True else None
+        plotter_CV_cycles(data, filename) if plot_CV_cycles == True else None
+        plotter_CV_cycles_with_log(data, filename) if plot_CV_cycles_with_log_scale == True else None
+        plotter_CV_direction(data, filename) if plot_CV_direction == True else None
+        plotter_CV_direction_cycles(data, filename) if plot_CV_direction_cycles == True else None
 
     return data
 
