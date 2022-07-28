@@ -1,9 +1,9 @@
 from functions.data_managment.loaders import *
-from functions.data_managment.savers import saver_data, saver_on_offs
+from functions.data_managment.savers import saver_data, saver_retention
 from functions.assigners.assign_states_by_sequence import assign_by_sequence
-from functions.extractors.extract_on_offs import extract_on_offs
+from functions.extractors.extract_retention import extractor_retention
 from functions.plotters.plot_SRDP import plotter_CA_simple
-from functions.plotters.plot_on_off import plotter_on_offs
+from functions.plotters.plot_retention import plotter_retention
 
 # sth similar to IIFE
 main = lambda f: f()
@@ -15,19 +15,19 @@ def main():
 
     # Here you put list of files with CV data. If it is empty it will ask for path.
     list_filenames = [
-        'data/test_CA.mpt'
+        'data/ITO_Ni[Me4Benzo]_Cu_el7_retention_both_states_03_CA_C01.mpt'
     ]
 
     # Put your on-off sequence here:
-    sequence = ['bias', 'set', 'bias', 'read_set', 'bias', 'reset', 'bias', 'read_reset']
-    #sequence = ['bias', 'set', 'read_set', 'bias', 'reset', 'read_reset']
+    sequence = ['bias', 'read']
 
+    extract_retention = True    # <- for extracting retention
     save_data = False           # <- for saving data (as out_{filename})
-    save_on_offs = False        # <- for saving on-offs (as ON-OFF_{filename})
+    save_retention = False      # <- for saving on-offs (as ON-OFF_{filename})
 
     # For plotting:
     plot_CA_simple = True
-    plot_on_offs = True
+    plot_retention = True
 
     if len(list_filenames) == 0:
         list_filenames.append(input('\nNo element found in list_data, please give me a path to Your data: '))
@@ -44,21 +44,22 @@ def main():
 
         # Assigning states for ON-OFFs data
         data = assign_by_sequence(data, sequence)
+        print(f'Here\'s what it look like:\n{data}')
 
         # Extract states for ON-OFFs
-        on_offs = extract_on_offs(data)
-
-        print(f'Here\'s what it look like:\n{data}')
+        if extract_retention == True:
+            data_retention = extractor_retention(data)
+            print(f'\n{data_retention}')
 
         if save_data == True:
             saver_data(data, filename)
 
-        if save_on_offs == True:
-            saver_on_offs(on_offs, filename)
+        if save_retention == True:
+            saver_retention(data_retention, filename)
 
         # Plotting data
         plotter_CA_simple(data, filename) if plot_CA_simple == True else None
-        plotter_on_offs(on_offs, filename) if plot_on_offs == True else None
+        plotter_retention(data_retention, filename) if plot_retention == True else None
 
     return data
 

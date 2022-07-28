@@ -1,6 +1,6 @@
 import numpy as np
 
-def assign_on_off_by_sequence(data, sequence):
+def assign_by_sequence(data, sequence):
     print('Hi! I will assign states and group them into cycles according to the sequence:')
     for i in range(len(sequence)):
         print(f'{i+1}\t{sequence[i]}')
