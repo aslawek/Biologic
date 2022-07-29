@@ -1,8 +1,8 @@
-from functions.data_managment.loaders import *
+from functions.data_managment.loaders import load_from_mpt
 from functions.data_managment.savers import saver_data, saver_on_offs
 from functions.assigners.assign_states_by_sequence import assign_by_sequence
 from functions.extractors.extract_on_offs import extract_on_offs
-from functions.plotters.plot_SRDP import plotter_CA_simple
+from functions.plotters.plotter_CA import plotter_CA_simple
 from functions.plotters.plot_on_off import plotter_on_offs
 
 # sth similar to IIFE

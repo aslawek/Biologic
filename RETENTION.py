@@ -2,7 +2,7 @@ from functions.data_managment.loaders import *
 from functions.data_managment.savers import saver_data, saver_retention
 from functions.assigners.assign_states_by_sequence import assign_by_sequence
 from functions.extractors.extract_retention import extractor_retention
-from functions.plotters.plot_SRDP import plotter_CA_simple
+from functions.plotters.plotter_CA import plotter_CA_simple
 from functions.plotters.plot_retention import plotter_retention
 
 # sth similar to IIFE

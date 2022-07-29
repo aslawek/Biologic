@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def filter_by_cycles(data, ranges):
+def filter_cycles_by_ranges(data, ranges):
     data_filtered = pd.DataFrame()
     for i in range(int(np.floor(len(ranges)/2))):
         print(f'Filtering for pairs: {2*i} - {2*i+1} ==== {ranges[2*i]} - {ranges[2*i + 1]}')

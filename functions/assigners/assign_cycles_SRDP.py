@@ -1,4 +1,4 @@
-from functions.filters.simple_filters import *
+from functions.filters.filters_simple import *
 
 def assign_SRDP_cycles(data, read_V, peak_V):
     # Read cycles:
