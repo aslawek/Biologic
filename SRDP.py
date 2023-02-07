@@ -68,9 +68,10 @@ def main():
 
         # Get mean values of SRDP
         SRDP = SRDP.append({
-            'dt/s': dt,
-            'odd_to_even':   (data_SRDP['I_odd/mA'] / data_SRDP['I_even/mA']).mean(),
-            'first_to_last': (data_SRDP['I_first/mA'] / data_SRDP['I_last/mA']).mean()},
+            'dt/s': dt, 'I_odd': data_SRDP['I_odd/mA'].mean(), 'I_even': data_SRDP['I_even/mA'].mean(),
+            'odd_to_even': (data_SRDP['I_odd/mA'] / data_SRDP['I_even/mA']).mean(),
+            'even_to_odd': (data_SRDP['I_even/mA'] / data_SRDP['I_odd/mA']).mean(),
+            'first_to_last': (data_SRDP['I_first/mA'] / data_SRDP['I_last/mA']).mean(), 'filename': filename},
             ignore_index=True)
 
         # Plotting data
@@ -85,7 +86,7 @@ def main():
     plotter_SRDP_reads_peaks_dt(SRDP) if plot_SRDP_dt == True else None
 
     if save_SRDP == True:
-        saver_SRDP(data, list_filenames[-1])
+        saver_SRDP(SRDP, list_filenames[-1])
 
     return data, SRDP
 
