@@ -14,7 +14,9 @@ def main():
 
     # Here you put list of files with CV data. If it is empty it will ask for path.
     list_filenames = [
-        'data/test_CV.mpt'
+        # 'data/test_CV.mpt'
+        'data/IV_scan_start.txt'
+
     ]
 
     assign_cycles = True                # <- number cycles of CV

@@ -19,6 +19,28 @@ def filter_by_voltage_value(data, filter_V):
     else:
         return data_filtered
 
+#version for results acquired by AUTOLAB hardware
+def filter_by_voltage_value_STDP(data, filter_V, variation):
+
+    print(data.columns)
+    # Create a mask for values within the desired range
+    if filter_V > 0:
+        lower_bond = filter_V - ( variation * filter_V )
+        upper_bond = filter_V + ( variation * filter_V )
+        mask = (data['WE(1).Potential (V)'] >= lower_bond) & (data['WE(1).Potential (V)'] <= upper_bond)
+    else:
+        lower_bond = filter_V +( variation * filter_V )
+        upper_bond = filter_V - ( variation * filter_V )
+        mask = (data['WE(1).Potential (V)'] >= lower_bond) & (data['WE(1).Potential (V)'] <= upper_bond)
+
+    data_filtered = data.loc[mask]
+
+    if len(data_filtered) == 0:
+        raise TypeError("filter_by_cycles: I filtered to empty dataset, check ranges.")
+    else:
+        return data_filtered
+
+
 def filter_by_voltage_range(data, filter_V, err_V=0.001):
     data_filtered = data.loc[(data['control/V'] <= filter_V + err_V) & (data['control/V'] >= filter_V - err_V)]
     if len(data_filtered) == 0:

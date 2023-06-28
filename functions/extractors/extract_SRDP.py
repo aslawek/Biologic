@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def extract_SRDP(data):
     # For read_cycles
     data_SRDP = pd.DataFrame({'cycle': pd.Series(dtype='int32'), 'I_odd/mA': pd.Series(dtype='float64'), 'I_even/mA': pd.Series(dtype='float64'), 'I_first/mA': pd.Series(dtype='float64'), 'I_last/mA': pd.Series(dtype='float64')})
