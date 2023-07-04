@@ -16,10 +16,6 @@ def main():
     # Here you put list of files with CV data. If it is empty it will ask for path.
     list_filenames = [
         'data/test_SRDP_100ms.mpt',
-        'data/test_SRDP_10ms.mpt',
-        'data/test_SRDP_200ms.mpt',
-        'data/test_SRDP_500ms.mpt',
-        'data/test_SRDP_50ms.mpt'
     ]
 
     save_data = False
@@ -52,10 +48,13 @@ def main():
         bias_V = data['control/V'].unique()[0] if hardcoded_bias_V == None else None
         read_V = data['control/V'].unique()[1] if hardcoded_read_V == None else None
         peak_V = data['control/V'].unique()[2] if hardcoded_peak_V == None else None
+
+
         print(f'Voltage values are: {bias_V} V for bias, {read_V} V for read and {peak_V} V for peak.')
 
         # Assign SRDP cycles for reads and peaks
         data = assign_SRDP_cycles(data, read_V, peak_V)
+        # print('DATA:', data)
 
         # Get dt from the first two peak_cycles
         t1 = data.loc[(data['peak_cycle'] == 1) & (data['control/V'] == peak_V)]['time/s'].max()

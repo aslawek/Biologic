@@ -64,7 +64,8 @@ def load_from_txt(filename):
     #     print(f'Changed column header for current from {label_I} to I/mA')
 
     # Acutally loading of the data:
-    data = pd.read_csv(f'{filename}', encoding="utf-8-sig", skiprows=rows_to_skip, sep='\t')
+    # data = pd.read_csv(f'{filename}', encoding="utf-8-sig", skiprows=rows_to_skip, sep='\t')
+    data = pd.read_csv(f'{filename}',  skiprows=rows_to_skip, sep='\t')
     #[['Time(s)',  'WE(1).Current(A)',   'WE(1).Potential(V)',   'Corrected time(s)']]
 
 

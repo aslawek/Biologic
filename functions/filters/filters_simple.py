@@ -35,6 +35,9 @@ def filter_by_voltage_value_STDP(data, filter_V, variation):
 
     data_filtered = data.loc[mask]
 
+
+
+
     if len(data_filtered) == 0:
         raise TypeError("filter_by_cycles: I filtered to empty dataset, check ranges.")
     else:
