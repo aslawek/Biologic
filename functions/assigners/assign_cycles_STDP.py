@@ -1,7 +1,7 @@
 from functions.filters.filters_simple import *
 import pandas as pd
 
-from Biologic.functions.filters.filters_simple import filter_by_voltage_value_STDP
+from functions.filters.filters_simple import filter_by_voltage_value_STDP
 
 
 def assign_STDP_reset_cycles(data, variation, voltage, cycle_name):
