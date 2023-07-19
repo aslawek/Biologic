@@ -25,46 +25,50 @@ def main():
         # 'data/stdp-exp02(3).txt',
         # 'data/exp01_stdp(1).txt',
 
-        'data/stdp(27).txt',
-        'data/stdp(28).txt',
-        'data/stdp(29).txt',
-        'data/stdp(30).txt',
-        'data/stdp(31).txt',
-        'data/stdp(32).txt',
-        'data/stdp(33).txt',
-        'data/stdp(34).txt',
-        'data/stdp(35).txt',
-        'data/stdp(36).txt',
-        'data/stdp(37).txt',
-        'data/stdp(38).txt',
-        'data/stdp(39).txt',
-        'data/stdp.txt',
-        'data/stdp(1).txt',
-        'data/stdp(2).txt',
-        'data/stdp(3).txt',
-        'data/stdp(4).txt',
-        'data/stdp(5).txt',
-        'data/stdp(6).txt',
-        'data/stdp(7).txt',
-        'data/stdp(8).txt',
-        'data/stdp(9).txt',
-        'data/stdp(10).txt',
-        'data/stdp(11).txt',
-        'data/stdp(12).txt',
-        'data/stdp(13).txt',
-        'data/stdp(14).txt',
-        'data/stdp(15).txt',
-        'data/stdp(16).txt',
-        'data/stdp(17).txt',
-        'data/stdp(18).txt',
-        'data/stdp(19).txt',
-        'data/stdp(20).txt',
-        'data/stdp(21).txt',
-        'data/stdp(22).txt',
-        'data/stdp(23).txt',
-        'data/stdp(24).txt',
-        'data/stdp(25).txt',
-        'data/stdp(26).txt',
+        # 'exp2/stdp(10).txt',
+        # 'exp2/stdp(20).txt',
+        # 'exp2/stdp(30).txt',
+
+        'exp2/stdp(36).txt',
+        'exp2/stdp(37).txt',
+        'exp2/stdp(38).txt',
+        'exp2/stdp(39).txt',
+        'exp2/stdp.txt',
+        'exp2/stdp(1).txt',
+        'exp2/stdp(2).txt',
+        'exp2/stdp(3).txt',
+        'exp2/stdp(4).txt',
+        'exp2/stdp(5).txt',
+        'exp2/stdp(6).txt',
+        'exp2/stdp(7).txt',
+        'exp2/stdp(8).txt',
+        'exp2/stdp(9).txt',
+        'exp2/stdp(10).txt',
+        'exp2/stdp(11).txt',
+        'exp2/stdp(12).txt',
+        'exp2/stdp(13).txt',
+        'exp2/stdp(14).txt',
+        'exp2/stdp(15).txt',
+        'exp2/stdp(16).txt',
+        'exp2/stdp(17).txt',
+        'exp2/stdp(18).txt',
+        'exp2/stdp(19).txt',
+        'exp2/stdp(20).txt',
+        'exp2/stdp(21).txt',
+        'exp2/stdp(22).txt',
+        'exp2/stdp(23).txt',
+        'exp2/stdp(24).txt',
+        'exp2/stdp(25).txt',
+        'exp2/stdp(26).txt',
+        'exp2/stdp(27).txt',
+        'exp2/stdp(28).txt',
+        'exp2/stdp(29).txt',
+        'exp2/stdp(30).txt',
+        'exp2/stdp(31).txt',
+        'exp2/stdp(32).txt',
+        'exp2/stdp(33).txt',
+        'exp2/stdp(34).txt',
+        'exp2/stdp(35).txt',
     ]
 
     #initialization of variables
@@ -95,14 +99,15 @@ def main():
     # hardcoded_stdp2_V = None
     # hardcoded_reset_V = None
     hardcoded_bias_V = 0
-    hardcoded_read_V = 0.054
-    hardcoded_stdp1_V = -0.3
-    hardcoded_stdp2_V = +0.3
-    hardcoded_reset_V = -1.0
+    hardcoded_read_V = 0.05
+    hardcoded_stdp1_V = -0.15
+    hardcoded_stdp2_V = +0.15
+    hardcoded_reset_V = -0.5
 
     starting_dt = 0.0000 #change if your first file is connected with dt other than 0!!!
     number_of_sequences = 5 #numberof sequences to be taken into calculations
-    variation = 0.1 # typically you should put +/- 5% variations of the of the signals
+    variation = 0.15 # typically you should put +/- 15% variations of the of the signals
+    bsl_corr = 0.0000 #adding several uA or mA to the backgoround / USE ONLY IF NECESSARY /  TO DO: change it to average of the backgorund
 
     if len(list_filenames) == 0:
         list_filenames.append(input('\nNo element found in list_data, please give me a path to Your data: '))
@@ -129,6 +134,10 @@ def main():
         # Load the data
         data = load_from_txt(filename)
         # print(data)
+
+        #poor version of backgorund correction
+        data["WE(1).Current (A)"] += bsl_corr
+
 
         if len(data) == 0:
             print('\033[93m' + f'\nNo data found for {filename}. Skipping...\n' + '\x1b[0m. Did you put proper VOLTAGE parameters?')
