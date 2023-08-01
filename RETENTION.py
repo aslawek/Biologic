@@ -1,9 +1,10 @@
+import matplotlib.pyplot as plt     # for some reason this line is important...
 from functions.data_managment.loaders import *
 from functions.data_managment.savers import saver_data, saver_retention
 from functions.assigners.assign_states_by_sequence import assign_by_sequence
 from functions.extractors.extract_retention import extractor_retention
 from functions.plotters.plotter_CA import plotter_CA_simple
-from functions.plotters.plot_retention import plotter_retention
+from functions.plotters.plotter_retention import plotter_retention
 
 # sth similar to IIFE
 main = lambda f: f()
@@ -15,7 +16,7 @@ def main():
 
     # Here you put list of files with CV data. If it is empty it will ask for path.
     list_filenames = [
-        'data/ITO_Ni[Me4Benzo]_Cu_el7_retention_both_states_03_CA_C01.mpt'
+        'data_examples/CA_retention.mpt'
     ]
 
     # Put your on-off sequence here:
