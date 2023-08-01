@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt     # for some reason this line is important...
 from functions.data_managment.loaders import load_from_mpt
 from functions.data_managment.savers import saver_CV
 from functions.filters.filters_simple import filter_cycles_by_ranges
@@ -14,40 +15,20 @@ def main():
 
     # Here you put list of files with CV data. If it is empty it will ask for path.
     list_filenames = [
-        'data_n/ITO_Ni[Et4Benzo]_Au_el5_CV_stability_02_CV_C02.mpt',
-        'data_n/ITO_Ni[Et4Benzo]_Au_el6_on-off_500cycles_01_CV_C02.mpt',
-        'data_n/ITO_Ni[Et4Benzo]_Au_el6_on-off_500cycles_03_CV_C02.mpt',
-        'data_n/ITO_Ni[Et4Benzo]_Au_el7_retention_long_01_CV_C02.mpt',
-        'data_n/ITO_Ni[Et4Benzo]_Au_el7_retention_long_07_CV_C02.mpt',
-        'data_n/ITO_Ni[Me2Ph2Benzo]_Au_el3_CV_stability_02_CV_C01.mpt',
-        'data_n/ITO_Ni[Me2Ph2Benzo]_Au_el4_on-off_500cycles_01_CV_C01.mpt',
-        'data_n/ITO_Ni[Me2Ph2Benzo]_Au_el4_on-off_500cycles_03_CV_C01.mpt',
-        'data_n/ITO_Ni[Me2Ph2Benzo]_Au_el6_retention_both_states_01_CV_C01.mpt',
-        'data_n/ITO_Ni[Me2Ph2Benzo]_Au_el6_retention_both_states_07_CV_C01.mpt',
-        'data_n/ITO_Ni[Me4Benzo]_Au_el11_test_CV_channel_1_02_CV_C01.mpt',
-        'data_n/ITO_Ni[Me4Benzo]_Au_el11_test_CV_channel_2_02_CV_C02.mpt',
-        'data_n/ITO_Ni[Me4Benzo]_Au_el2_CV_stability_02_CV_C01.mpt',
-        'data_n/ITO_Ni[Me4Benzo]_Au_el2_on-off_500cycles_01_CV_C01.mpt',
-        'data_n/ITO_Ni[Me4Benzo]_Au_el2_on-off_500cycles_03_CV_C01.mpt',
-        'data_n/ITO_Ni[Me4Benzo]_Au_el2_retention_long_01_CV_C01.mpt',
-        'data_n/ITO_Ni[Me4Benzo]_Au_el2_retention_long_07_CV_C01.mpt'
-    ]
-
-    list_filenames = [
-        'data_n/ITO_Ni[Me4Benzo]_Au_el2_retention_long_07_CV_C01.mpt'
+        'data_examples/CV.mpt',
     ]
 
     assign_cycles = True                # <- number cycles of CV
     filter_by_cycles_ranges = []        # <- here put pairs of ranges for filtering cycles (leave [] if not necessary)
-    save_data = True                   # <- for saving data (as out_{filename})
+    save_data = False                   # <- for saving data (as out_{filename})
 
     # For plotting:
     plot_CV_simple = False
-    plot_CV_simple_with_log_scale = False
-    plot_CV_cycles = True
-    plot_CV_cycles_with_log_scale = False
+    plot_CV_simple_with_log_scale = True
+    plot_CV_cycles = False
+    plot_CV_cycles_with_log_scale = True
     plot_CV_direction = False
-    plot_CV_direction_cycles = False
+    plot_CV_direction_cycles = True
 
     if len(list_filenames) == 0:
         list_filenames.append(input('\nNo element found in list_data, please give me a path to Your data: '))

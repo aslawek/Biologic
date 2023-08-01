@@ -1,9 +1,10 @@
+import matplotlib.pyplot as plt     # for some reason this line is important...
 from functions.data_managment.loaders import load_from_mpt
 from functions.data_managment.savers import saver_data, saver_on_offs
 from functions.assigners.assign_states_by_sequence import assign_by_sequence
 from functions.extractors.extract_on_offs import extract_on_offs
 from functions.plotters.plotter_CA import plotter_CA_simple
-from functions.plotters.plot_on_off import plotter_on_offs
+from functions.plotters.plotter_on_off import plotter_on_offs
 
 # sth similar to IIFE
 main = lambda f: f()
@@ -15,12 +16,11 @@ def main():
 
     # Here you put list of files with CV data. If it is empty it will ask for path.
     list_filenames = [
-        'data/test_CA.mpt'
+        'data_examples/CA_on-off.mpt'
     ]
 
     # Put your on-off sequence here:
     sequence = ['bias', 'set', 'bias', 'read_set', 'bias', 'reset', 'bias', 'read_reset']
-    #sequence = ['bias', 'set', 'read_set', 'bias', 'reset', 'read_reset']
 
     save_data = False           # <- for saving data (as out_{filename})
     save_on_offs = False        # <- for saving on-offs (as ON-OFF_{filename})
