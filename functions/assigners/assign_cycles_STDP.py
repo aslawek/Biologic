@@ -1,8 +1,27 @@
+import numpy as np
+
 from functions.filters.filters_simple import *
 import pandas as pd
 
 from functions.filters.filters_simple import filter_by_voltage_value_STDP
 
+def assign_STDP_states(data, V_bias, V_set, V_reset, V_read, V_err):
+    data['state'] = -99
+    # assign bias state to all points within bias_V +/- bias_V_err
+    data.loc[(data['WE(1).Potential (V)'] <= V_bias + V_err) & (data['WE(1).Potential (V)'] >= V_bias - V_err), 'state'] = 0
+    data.loc[(data['WE(1).Potential (V)'] <= V_set + V_err) & (data['WE(1).Potential (V)'] >= V_set - V_err), 'state'] = 100
+    data.loc[(data['WE(1).Potential (V)'] <= V_reset + V_err) & (data['WE(1).Potential (V)'] >= V_reset - V_err), 'state'] = -100
+    data.loc[(data['WE(1).Potential (V)'] <= V_read + V_err) & (data['WE(1).Potential (V)'] >= V_read - V_err), 'state'] = 33
+
+    #data.loc[data['state'].diff() == 33, 'state'] = 10000
+    #data.loc[data['state'].diff() == -33, 'state'] = -10000
+
+    #for index, row in data.iterrows():
+    #    #print(row['state'])
+    #    if row['state'] == None:
+    #        data[index] = 0.5
+
+    return data
 
 def assign_STDP_reset_cycles(data, variation, voltage, cycle_name):
 

@@ -23,3 +23,25 @@ def plotter_CA_points(data, filename):
     ax1.set_ylabel("control / V", fontsize=12)
     ax2.set_ylabel("current / mA", fontsize=12)
     ax1.legend()
+
+def plotter_CA_Autolab(data, filename):
+    ax1 = plt.figure().add_subplot()
+    ax2 = ax1.twinx()
+    ax1.plot(data['Time (s)'], data['WE(1).Potential (V)'], color="blue")
+    ax2.plot(data['Time (s)'], data['WE(1).Current (A)'], color="red")
+    ax1.set_title(filename.replace("/", " ").split()[-1])
+    ax1.set_xlabel("time / s", fontsize=12)
+    ax1.set_ylabel("control / V", fontsize=12)
+    ax2.set_ylabel("current / mA", fontsize=12)
+    #ax1.legend()
+
+def plotter_CA_Autolab_assign_cycles(data, filename):
+    ax1 = plt.figure().add_subplot()
+    ax2 = ax1.twinx()
+    ax1.plot(data['Time (s)'], data['WE(1).Potential (V)'], color="blue")
+    ax2.plot(data['Time (s)'], data['state'], color="red")
+    ax1.set_title(filename.replace("/", " ").split()[-1])
+    ax1.set_xlabel("time / s", fontsize=12)
+    ax1.set_ylabel("control / V", fontsize=12)
+    ax2.set_ylabel("current / mA", fontsize=12)
+    #ax1.legend()
