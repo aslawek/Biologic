@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
-mpl.use('Qt5Agg'); #mpl.use('TkAgg')
+mpl.use('Qt5Agg') #mpl.use('Agg') #mpl.use('TkAgg')
 
 def plotter_CV_simple(data, filename):
     dV_dt = np.around(data["control/V"].diff().abs().sum() / data["time/s"].diff().abs().sum(), 3)

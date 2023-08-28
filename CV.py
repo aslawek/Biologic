@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt     # for some reason this line is important...
 from functions.data_managment.loaders import load_from_mpt
 from functions.data_managment.savers import saver_CV
 from functions.filters.filters_simple import filter_cycles_by_ranges
@@ -14,9 +15,7 @@ def main():
 
     # Here you put list of files with CV data. If it is empty it will ask for path.
     list_filenames = [
-        # 'data/test_CV.mpt'
-        'data/IV_scan_start.txt'
-
+        'data_examples/CV.mpt',
     ]
 
     assign_cycles = True                # <- number cycles of CV
@@ -25,11 +24,11 @@ def main():
 
     # For plotting:
     plot_CV_simple = False
-    plot_CV_simple_with_log_scale = False
+    plot_CV_simple_with_log_scale = True
     plot_CV_cycles = False
     plot_CV_cycles_with_log_scale = True
     plot_CV_direction = False
-    plot_CV_direction_cycles = False
+    plot_CV_direction_cycles = True
 
     if len(list_filenames) == 0:
         list_filenames.append(input('\nNo element found in list_data, please give me a path to Your data: '))

@@ -1,0 +1,9 @@
+*
+*/
+!.gitignore
+
+# includes test data
+!CV.mpt
+!CA_on-off.mpt
+!CA_retention.mpt
+!SRDP_*s.mpt

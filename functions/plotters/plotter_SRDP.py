@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-mpl.use('Qt5Agg'); #mpl.use('TkAgg')
+mpl.use('Qt5Agg') #mpl.use('Agg') #mpl.use('TkAgg')
 
 def plotter_SRDP_CA_assigning_cycles(data, filename, dt):
     ax1 = plt.figure().add_subplot()
@@ -14,6 +14,7 @@ def plotter_SRDP_CA_assigning_cycles(data, filename, dt):
     ax1.set_ylabel("current / mA", fontsize=12)
     ax2.set_ylabel("cycle norm.", fontsize=12)
     ax2.legend()
+    plt.show()
 
 def plotter_SRDP_I_vs_peak(data, filename, dt):
     jet = plt.get_cmap('jet')
@@ -37,3 +38,4 @@ def plotter_SRDP_reads_peaks_dt(SRDP):
     ax1.set_xlabel("dt / s", fontsize=12)
     ax1.set_ylabel("SRDP ratio", fontsize=12)
     ax1.legend()
+    #plt.show()

@@ -34,9 +34,13 @@ def saver_data_SRDP(data, filename, dt):
     print(f'\n Saving data as {output_filename}')
     data.to_csv(f'{output_filename}', sep='\t', index=False)
 
-def saver_SRDP(data, filename):
-    prefix = 'SRDP_'
-    output_filename = filename.replace("/", " ").split()[0] + "/" + f'{prefix}{filename.replace("/", " ").split()[1]}'
+def saver_SRDP_each_dt(data, filename, dt):
+    output_filename = filename.replace("/", " ").split()[0] + "/" + f'SRDP_dt_{np.round(dt, 3)}_s' + '.txt'
+    print(f'\n Saving data as {output_filename}')
+    data.to_csv(f'{output_filename}', sep='\t', index=False)
+
+def saver_SRDP_summary(data, filename):
+    output_filename = filename.replace("/", " ").split()[0] + "/SRDP_summary.txt"
     print(f'\n Saving data as {output_filename}')
     data.to_csv(f'{output_filename}', sep='\t', index=False)
 

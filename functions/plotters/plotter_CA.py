@@ -1,6 +1,6 @@
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-mpl.use('Qt5Agg'); #mpl.use('TkAgg')
+mpl.use('Qt5Agg') #mpl.use('Agg') #mpl.use('TkAgg')
 
 def plotter_CA_simple(data, filename):
     ax1 = plt.figure().add_subplot()
