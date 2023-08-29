@@ -20,55 +20,38 @@ def main():
     # Here you put list of files with STDP data. If it is empty it will ask for path.
     list_filenames = [
 
-        # 'data/stdp-exp02(1).txt',
-        # 'data/stdp-exp02.txt',
-        # 'data/stdp-exp02(3).txt',
-        # 'data/exp01_stdp(1).txt',
+        # 'dataSTDP/stdp(16).txt',
 
-        # 'exp2/stdp(10).txt',
-        # 'exp2/stdp(20).txt',
-        # 'exp2/stdp(30).txt',
-
-        'exp2/stdp(36).txt',
-        'exp2/stdp(37).txt',
-        'exp2/stdp(38).txt',
-        'exp2/stdp(39).txt',
-        'exp2/stdp.txt',
-        'exp2/stdp(1).txt',
-        'exp2/stdp(2).txt',
-        'exp2/stdp(3).txt',
-        'exp2/stdp(4).txt',
-        'exp2/stdp(5).txt',
-        'exp2/stdp(6).txt',
-        'exp2/stdp(7).txt',
-        'exp2/stdp(8).txt',
-        'exp2/stdp(9).txt',
-        'exp2/stdp(10).txt',
-        'exp2/stdp(11).txt',
-        'exp2/stdp(12).txt',
-        'exp2/stdp(13).txt',
-        'exp2/stdp(14).txt',
-        'exp2/stdp(15).txt',
-        'exp2/stdp(16).txt',
-        'exp2/stdp(17).txt',
-        'exp2/stdp(18).txt',
-        'exp2/stdp(19).txt',
-        'exp2/stdp(20).txt',
-        'exp2/stdp(21).txt',
-        'exp2/stdp(22).txt',
-        'exp2/stdp(23).txt',
-        'exp2/stdp(24).txt',
-        'exp2/stdp(25).txt',
-        'exp2/stdp(26).txt',
-        'exp2/stdp(27).txt',
-        'exp2/stdp(28).txt',
-        'exp2/stdp(29).txt',
-        'exp2/stdp(30).txt',
-        'exp2/stdp(31).txt',
-        'exp2/stdp(32).txt',
-        'exp2/stdp(33).txt',
-        'exp2/stdp(34).txt',
-        'exp2/stdp(35).txt',
+        'dataSTDP/stdp(13).txt',
+        'dataSTDP/stdp(14).txt',
+        'dataSTDP/stdp(15).txt',
+        'dataSTDP/stdp(16).txt',
+        'dataSTDP/stdp(17).txt',
+        'dataSTDP/stdp(18).txt',
+        'dataSTDP/stdp(19).txt',
+        'dataSTDP/stdp(20).txt',
+        'dataSTDP/stdp(21).txt',
+        'dataSTDP/stdp(22).txt',
+        'dataSTDP/stdp(23).txt',
+        'dataSTDP/stdp(24).txt',
+        'dataSTDP/stdp(25).txt',
+        'dataSTDP/stdp(26).txt',
+        'dataSTDP/stdp(27).txt',
+        'dataSTDP/stdp(28).txt',
+        'dataSTDP/stdp(29).txt',
+        'dataSTDP/stdp(30).txt',
+        'dataSTDP/stdp(1).txt',
+        'dataSTDP/stdp(2).txt',
+        'dataSTDP/stdp(3).txt',
+        'dataSTDP/stdp(4).txt',
+        'dataSTDP/stdp(5).txt',
+        'dataSTDP/stdp(6).txt',
+        'dataSTDP/stdp(7).txt',
+        'dataSTDP/stdp(8).txt',
+        'dataSTDP/stdp(9).txt',
+        'dataSTDP/stdp(10).txt',
+        'dataSTDP/stdp(11).txt',
+        'dataSTDP/stdp(12).txt',
     ]
 
     #initialization of variables
@@ -99,14 +82,14 @@ def main():
     # hardcoded_stdp2_V = None
     # hardcoded_reset_V = None
     hardcoded_bias_V = 0
-    hardcoded_read_V = 0.05
+    hardcoded_read_V = 0.195
     hardcoded_stdp1_V = -0.15
     hardcoded_stdp2_V = +0.15
-    hardcoded_reset_V = -0.5
+    hardcoded_reset_V = -1.95
 
     starting_dt = 0.0000 #change if your first file is connected with dt other than 0!!!
     number_of_sequences = 5 #numberof sequences to be taken into calculations
-    variation = 0.15 # typically you should put +/- 15% variations of the of the signals
+    variation = 0.05 # typically you should put +/- 15% variations of the of the signals
     bsl_corr = 0.0000 #adding several uA or mA to the backgoround / USE ONLY IF NECESSARY /  TO DO: change it to average of the backgorund
 
     if len(list_filenames) == 0:
