@@ -20,8 +20,10 @@ def main():
     # Here you put list of files with STDP data. If it is empty it will ask for path.
     list_filenames = [
 
-        # 'dataSTDP/stdp(16).txt',
+        # 'dataSTDP/stdp(19).txt',
+        # 'dataSTDP/stdp(29).txt',
 
+        'dataSTDP/stdp.txt',
         'dataSTDP/stdp(13).txt',
         'dataSTDP/stdp(14).txt',
         'dataSTDP/stdp(15).txt',
@@ -52,6 +54,39 @@ def main():
         'dataSTDP/stdp(10).txt',
         'dataSTDP/stdp(11).txt',
         'dataSTDP/stdp(12).txt',
+
+        # 'dataSTDP/stdp(31).txt',
+        # 'dataSTDP/stdp(32).txt',
+        # 'dataSTDP/stdp(33).txt',
+        # 'dataSTDP/stdp(34).txt',
+        # 'dataSTDP/stdp(35).txt',
+        # 'dataSTDP/stdp(36).txt',
+        # 'dataSTDP/stdp(37).txt',
+        # 'dataSTDP/stdp(38).txt',
+        # 'dataSTDP/stdp(39).txt',
+        # 'dataSTDP/stdp(40).txt',
+        # 'dataSTDP/stdp(41).txt',
+        # 'dataSTDP/stdp(42).txt',
+        # 'dataSTDP/stdp(43).txt',
+        # 'dataSTDP/stdp(44).txt',
+        # 'dataSTDP/stdp(45).txt',
+        # 'dataSTDP/stdp(46).txt',
+        # 'dataSTDP/stdp(47).txt',
+        # 'dataSTDP/stdp(48).txt',
+        # 'dataSTDP/stdp(49).txt',
+        # 'dataSTDP/stdp(50).txt',
+        # 'dataSTDP/stdp(51).txt',
+        # 'dataSTDP/stdp(52).txt',
+        # 'dataSTDP/stdp(53).txt',
+        # 'dataSTDP/stdp(54).txt',
+        # 'dataSTDP/stdp(55).txt',
+        # 'dataSTDP/stdp(56).txt',
+        # 'dataSTDP/stdp(57).txt',
+        # 'dataSTDP/stdp(58).txt',
+        # 'dataSTDP/stdp(59).txt',
+        # 'dataSTDP/stdp(60).txt',
+        # 'dataSTDP/stdp(61).txt'
+
     ]
 
     #initialization of variables
@@ -82,14 +117,15 @@ def main():
     # hardcoded_stdp2_V = None
     # hardcoded_reset_V = None
     hardcoded_bias_V = 0
-    hardcoded_read_V = 0.195
+    hardcoded_read_V = 0.209
     hardcoded_stdp1_V = -0.15
     hardcoded_stdp2_V = +0.15
-    hardcoded_reset_V = -1.95
+    hardcoded_reset_V = -2.40 #exp01 & exp03
+    #hardcoded_reset_V = -1.91  # exp02 & exp04
 
     starting_dt = 0.0000 #change if your first file is connected with dt other than 0!!!
-    number_of_sequences = 5 #numberof sequences to be taken into calculations
-    variation = 0.05 # typically you should put +/- 15% variations of the of the signals
+    number_of_sequences = 2 #numberof sequences to be taken into calculations
+    variation = 0.1# typically you should put +/- 15% variations of the of the signals
     bsl_corr = 0.0000 #adding several uA or mA to the backgoround / USE ONLY IF NECESSARY /  TO DO: change it to average of the backgorund
 
     if len(list_filenames) == 0:
@@ -175,6 +211,7 @@ def main():
         print('first true index:',first_true_index)
 
         second_true_index = data[data['reset_cycle'] == 2].index[0]
+        second_true_index = data[data['reset_cycle'] == 1].index[0]
         print('second true index:', second_true_index)
 
         truncated_data = data[data.index >= second_true_index]
