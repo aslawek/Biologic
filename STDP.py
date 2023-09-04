@@ -19,7 +19,36 @@ def main():
 
     # Here you put list of files with STDP data. If it is empty it will ask for path.
     list_filenames = [
-        'data/stdp(12).txt'
+        'data_STDP_TM/stdp(1).txt',
+        'data_STDP_TM/stdp(10).txt',
+        'data_STDP_TM/stdp(11).txt',
+        'data_STDP_TM/stdp(12).txt',
+        'data_STDP_TM/stdp(13).txt',
+        'data_STDP_TM/stdp(14).txt',
+        'data_STDP_TM/stdp(15).txt',
+        'data_STDP_TM/stdp(16).txt',
+        'data_STDP_TM/stdp(17).txt',
+        'data_STDP_TM/stdp(18).txt',
+        'data_STDP_TM/stdp(19).txt',
+        'data_STDP_TM/stdp(2).txt',
+        'data_STDP_TM/stdp(20).txt',
+        'data_STDP_TM/stdp(21).txt',
+        'data_STDP_TM/stdp(22).txt',
+        'data_STDP_TM/stdp(23).txt',
+        'data_STDP_TM/stdp(24).txt',
+        'data_STDP_TM/stdp(25).txt',
+        'data_STDP_TM/stdp(26).txt',
+        'data_STDP_TM/stdp(27).txt',
+        'data_STDP_TM/stdp(28).txt',
+        'data_STDP_TM/stdp(29).txt',
+        'data_STDP_TM/stdp(3).txt',
+        'data_STDP_TM/stdp(4).txt',
+        'data_STDP_TM/stdp(5).txt',
+        'data_STDP_TM/stdp(6).txt',
+        'data_STDP_TM/stdp(7).txt',
+        'data_STDP_TM/stdp(8).txt',
+        'data_STDP_TM/stdp(9).txt',
+        'data_STDP_TM/stdp.txt'
     ]
 
     #initialization of variables
@@ -50,10 +79,10 @@ def main():
     # hardcoded_stdp2_V = None
     # hardcoded_reset_V = None
     hardcoded_bias_V = 0
-    hardcoded_read_V = 0.05
+    hardcoded_read_V = 0.16
     hardcoded_stdp1_V = -0.15
     hardcoded_stdp2_V = +0.15
-    hardcoded_reset_V = -0.5
+    hardcoded_reset_V = 1.95
 
     starting_dt = 0.0000 #change if your first file is connected with dt other than 0!!!
     number_of_sequences = 5 #numberof sequences to be taken into calculations
