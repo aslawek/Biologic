@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def extract_STDP(data):
+def extract_STDP(data, number_of_sequences):
     # For read_cycles
     data_STDP = pd.DataFrame({
         'cycle': pd.Series(dtype='int32'),
@@ -23,7 +23,7 @@ def extract_STDP(data):
         #read 3x READ_before
 
 
-        if cycle <= 5: #if changed in the future, one shouldmodify the whole function to take number_of_sequences variable form the main function
+        if cycle < number_of_sequences: #if changed in the future, one shouldmodify the whole function to take number_of_sequences variable from the main function
             data_STDP = data_STDP.append({
                 'cycle': cycle+1,
 

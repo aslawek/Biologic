@@ -102,7 +102,7 @@ def assign_STDP_cycles(data, variation, voltage, cycle_name):
 
         cycle_length = cycle_index_max - cycle_index_min + 1  # Calculate cycle length
 
-        if cycle_length >= 10:  # Include cycles with at least XYZ points
+        if cycle_length >= 40:  # Include cycles with at least XYZ points
             cycle_values = data_filtered.loc[cycle_index_min:cycle_index_max, 'WE(1).Potential (V)']
             mean_value = cycle_values.mean()
             threshold = 0.02 * mean_value  # Threshold for excluding points (2% of the mean value)

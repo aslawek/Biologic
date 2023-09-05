@@ -16,20 +16,24 @@ def main():
 
     # Here you put list of files with CV data. If it is empty it will ask for path.
     list_filenames = [
-        'data_examples/SRDP_10ms.mpt',
-        'data_examples/SRDP_50ms.mpt',
-        'data_examples/SRDP_100ms.mpt',
-        'data_examples/SRDP_200ms.mpt',
-        'data_examples/SRDP_500ms.mpt'
+        './dataSRDP/el09_40_01_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-10-50-100-200-500ms_04_CA_C02.txt',
+        './dataSRDP/el09_40_01_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-10-50-100-200-500ms_07_CA_C02.txt',
+        './dataSRDP/el09_40_01_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-10-50-100-200-500ms_10_CA_C02.txt',
+        './dataSRDP/el09_40_01_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-10-50-100-200-500ms_13_CA_C02.txt',
+        './dataSRDP/el09_40_01_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-10-50-100-200-500ms_16_CA_C02.txt',
+        './dataSRDP/el09_41_02_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-1-2-5s_02_CA_C02.txt',
+        './dataSRDP/el09_41_02_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-1-2-5s_05_CA_C02.txt',
+        './dataSRDP/el09_41_02_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-1-2-5s_08_CA_C02.txt',
+        './dataSRDP/el09_42_03_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-10s_02_CA_C02.txt'
     ]
 
     save_data = False           # this saves 4-column data with SRDP peaks and reads assigned
-    save_SRDP_each_dt = False   # this saves SRDP for each dt
-    save_SRDP_summary = False   # this saves SRDP summary with std and more
+    save_SRDP_each_dt = True   # this saves SRDP for each dt
+    save_SRDP_summary = True   # this saves SRDP summary with std and more
 
-    plot_assigning = True       # this plots I(t) with reads and peaks assigned
+    plot_assigning = False       # this plots I(t) with reads and peaks assigned
     plot_I_vs_peak = False      # this plots I vs peak
-    plot_SRDP_dt = True         # this plots SRDP summary
+    plot_SRDP_dt = False         # this plots SRDP summary
 
     # Here you can hardcode your voltages (leave None if script works)
     hardcoded_bias_V = None

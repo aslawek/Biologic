@@ -20,10 +20,19 @@ def main():
     # Here you put list of files with STDP data. If it is empty it will ask for path.
     list_filenames = [
 
-        # 'dataSTDP/stdp(19).txt',
-        # 'dataSTDP/stdp(29).txt',
-
         'dataSTDP/stdp.txt',
+        'dataSTDP/stdp(1).txt',
+        'dataSTDP/stdp(2).txt',
+        'dataSTDP/stdp(3).txt',
+        'dataSTDP/stdp(4).txt',
+        'dataSTDP/stdp(5).txt',
+        'dataSTDP/stdp(6).txt',
+        'dataSTDP/stdp(7).txt',
+        'dataSTDP/stdp(8).txt',
+        'dataSTDP/stdp(9).txt',
+        'dataSTDP/stdp(10).txt',
+        'dataSTDP/stdp(11).txt',
+        'dataSTDP/stdp(12).txt',
         'dataSTDP/stdp(13).txt',
         'dataSTDP/stdp(14).txt',
         'dataSTDP/stdp(15).txt',
@@ -42,18 +51,18 @@ def main():
         'dataSTDP/stdp(28).txt',
         'dataSTDP/stdp(29).txt',
         'dataSTDP/stdp(30).txt',
-        'dataSTDP/stdp(1).txt',
-        'dataSTDP/stdp(2).txt',
-        'dataSTDP/stdp(3).txt',
-        'dataSTDP/stdp(4).txt',
-        'dataSTDP/stdp(5).txt',
-        'dataSTDP/stdp(6).txt',
-        'dataSTDP/stdp(7).txt',
-        'dataSTDP/stdp(8).txt',
-        'dataSTDP/stdp(9).txt',
-        'dataSTDP/stdp(10).txt',
-        'dataSTDP/stdp(11).txt',
-        'dataSTDP/stdp(12).txt',
+
+
+        # 'dataSTDP/stdp(31).txt',
+        # 'dataSTDP/stdp(32).txt',
+        # 'dataSTDP/stdp(33).txt',
+        # 'dataSTDP/stdp(34).txt',
+        # 'dataSTDP/stdp(35).txt',
+        # 'dataSTDP/stdp(36).txt',
+        # 'dataSTDP/stdp(37).txt',
+        # 'dataSTDP/stdp(38).txt',
+        # 'dataSTDP/stdp(39).txt',
+        # 'dataSTDP/stdp(40).txt',
 
         # 'dataSTDP/stdp(31).txt',
         # 'dataSTDP/stdp(32).txt',
@@ -117,14 +126,14 @@ def main():
     # hardcoded_stdp2_V = None
     # hardcoded_reset_V = None
     hardcoded_bias_V = 0
-    hardcoded_read_V = 0.209
-    hardcoded_stdp1_V = -0.15
-    hardcoded_stdp2_V = +0.15
-    hardcoded_reset_V = -2.40 #exp01 & exp03
-    #hardcoded_reset_V = -1.91  # exp02 & exp04
+    hardcoded_read_V = 0.201
+    hardcoded_stdp1_V = -0.00
+    hardcoded_stdp2_V = +0.00
+    hardcoded_reset_V = +1.90 # POSITIVE exp01 & exp03| NEGATIVE exp02 & exp04
 
     starting_dt = 0.0000 #change if your first file is connected with dt other than 0!!!
-    number_of_sequences = 2 #numberof sequences to be taken into calculations
+    number_of_sequences = 6 #number of sequences to be taken into calculations
+    starting_reset = 1 #reading after N-th reset
     variation = 0.1# typically you should put +/- 15% variations of the of the signals
     bsl_corr = 0.0000 #adding several uA or mA to the backgoround / USE ONLY IF NECESSARY /  TO DO: change it to average of the backgorund
 
@@ -136,6 +145,9 @@ def main():
         'READ_before': pd.Series(dtype='float64'),
         'READ_after': pd.Series(dtype='float64'),
         'WEIGHT_change': pd.Series(dtype='float64'),
+        'std-dev READ_before': pd.Series(dtype='float64'),
+        'std-dev READ_after': pd.Series(dtype='float64'),
+        'std-dev WEIGHT_change': pd.Series(dtype='float64'),
         'filename': pd.Series(dtype='string'),
     })
 
@@ -211,7 +223,7 @@ def main():
         print('first true index:',first_true_index)
 
         second_true_index = data[data['reset_cycle'] == 2].index[0]
-        second_true_index = data[data['reset_cycle'] == 1].index[0]
+        second_true_index = data[data['reset_cycle'] == starting_reset].index[0]
         print('second true index:', second_true_index)
 
         truncated_data = data[data.index >= second_true_index]
@@ -267,7 +279,7 @@ def main():
         # print('dt - 2nd and 3rd last read:', dt)
 
         # Extract STDP for reads and peaks:
-        data_STDP = extract_STDP(data)
+        data_STDP = extract_STDP(data, number_of_sequences)
         # print(f'data_STDP:\n{data_STDP}')
 
         if save_data == True:
@@ -279,6 +291,9 @@ def main():
             'READ_before': data_STDP['READ_before_MEAN/mA'].mean(),
             'READ_after': data_STDP['READ_after_MEAN/mA'].mean(),
             'WEIGHT_change': data_STDP['WEIGHT_change'].mean(),
+            'std-dev READ_before': data_STDP['READ_before_MEAN/mA'].std(),
+            'std-dev READ_after': data_STDP['READ_after_MEAN/mA'].std(),
+            'std-dev WEIGHT_change': data_STDP['WEIGHT_change'].std(),
             'filename': filename
             },ignore_index=True)
 
