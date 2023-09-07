@@ -64,37 +64,7 @@ def main():
         # 'dataSTDP/stdp(39).txt',
         # 'dataSTDP/stdp(40).txt',
 
-        # 'dataSTDP/stdp(31).txt',
-        # 'dataSTDP/stdp(32).txt',
-        # 'dataSTDP/stdp(33).txt',
-        # 'dataSTDP/stdp(34).txt',
-        # 'dataSTDP/stdp(35).txt',
-        # 'dataSTDP/stdp(36).txt',
-        # 'dataSTDP/stdp(37).txt',
-        # 'dataSTDP/stdp(38).txt',
-        # 'dataSTDP/stdp(39).txt',
-        # 'dataSTDP/stdp(40).txt',
-        # 'dataSTDP/stdp(41).txt',
-        # 'dataSTDP/stdp(42).txt',
-        # 'dataSTDP/stdp(43).txt',
-        # 'dataSTDP/stdp(44).txt',
-        # 'dataSTDP/stdp(45).txt',
-        # 'dataSTDP/stdp(46).txt',
-        # 'dataSTDP/stdp(47).txt',
-        # 'dataSTDP/stdp(48).txt',
-        # 'dataSTDP/stdp(49).txt',
-        # 'dataSTDP/stdp(50).txt',
-        # 'dataSTDP/stdp(51).txt',
-        # 'dataSTDP/stdp(52).txt',
-        # 'dataSTDP/stdp(53).txt',
-        # 'dataSTDP/stdp(54).txt',
-        # 'dataSTDP/stdp(55).txt',
-        # 'dataSTDP/stdp(56).txt',
-        # 'dataSTDP/stdp(57).txt',
-        # 'dataSTDP/stdp(58).txt',
-        # 'dataSTDP/stdp(59).txt',
-        # 'dataSTDP/stdp(60).txt',
-        # 'dataSTDP/stdp(61).txt'
+
 
     ]
 
@@ -126,13 +96,13 @@ def main():
     # hardcoded_stdp2_V = None
     # hardcoded_reset_V = None
     hardcoded_bias_V = 0
-    hardcoded_read_V = 0.201
+    hardcoded_read_V = 0.209
     hardcoded_stdp1_V = -0.00
     hardcoded_stdp2_V = +0.00
-    hardcoded_reset_V = +1.90 # POSITIVE exp01 & exp03| NEGATIVE exp02 & exp04
+    hardcoded_reset_V = +2.3 # POSITIVE exp01 & exp03| NEGATIVE exp02 & exp04
 
     starting_dt = 0.0000 #change if your first file is connected with dt other than 0!!!
-    number_of_sequences = 6 #number of sequences to be taken into calculations
+    number_of_sequences = 3 #number of sequences to be taken into calculations
     starting_reset = 1 #reading after N-th reset
     variation = 0.1# typically you should put +/- 15% variations of the of the signals
     bsl_corr = 0.0000 #adding several uA or mA to the backgoround / USE ONLY IF NECESSARY /  TO DO: change it to average of the backgorund
@@ -163,7 +133,7 @@ def main():
         print(f'\n \t ### STARTING LOOP {index + 1} ###\n\nLoading data {index + 1} of {len(list_filenames)} from file {filename}\n')
 
         # Load the data
-        data = load_from_txt(filename)
+        data = load_from_txt(filename, bsl_corr)
         # print(data)
 
         #poor version of backgorund correction
@@ -245,9 +215,7 @@ def main():
 
         peaks = peaks[peaks[cycle_name] <= max_iterator * 6]
 
-
-
-        print('READ peaks: ', peaks, data)
+        # print('READ peaks: ', peaks, data)
 
         if save_reads == True:
             prefix = "read_peaks_"
