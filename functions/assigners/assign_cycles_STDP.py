@@ -29,7 +29,7 @@ def assign_STDP_reset_cycles(data, variation, voltage, cycle_name):
 
         cycle_length = cycle_index_max - cycle_index_min + 1
 
-        if cycle_length >= 90:
+        if cycle_length >= 80:
             reset_cycles.append((cycle_index_min, cycle_index_max))
 
         # Assign the reset cycles with 50+ points
@@ -117,9 +117,9 @@ def assign_STDP_cycles(data, variation, voltage, cycle_name):
 
     data_filtered = data
     data_filtered = data_filtered[data_filtered[cycle_name].notna()]
-    print('data_unfiltered:', data)
-    print('data_filtered:', data_filtered)
-    data_filtered.to_csv("filtered_data.txt", index=False)
+    # print('data_unfiltered:', data)
+    # print('data_filtered:', data_filtered)
+    # data_filtered.to_csv("filtered_data.txt", index=False)
 
     return data
 
