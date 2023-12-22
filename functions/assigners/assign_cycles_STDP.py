@@ -58,8 +58,8 @@ def assign_STDP_reset_cycles(data, variation, voltage, cycle_name):
     return data
 
 
-# assigning READ cycles
-def assign_STDP_cycles(data, variation, voltage, cycle_name):
+# assigning READ cycles(3x read)
+def assign_STDP_read_cycles(data, variation, voltage, cycle_name):
 
     data = data.assign(cycle=pd.Series()) #array for storing cycles
     data_filtered = filter_by_voltage_value_STDP(data, voltage, variation)
@@ -102,7 +102,7 @@ def assign_STDP_cycles(data, variation, voltage, cycle_name):
 
         cycle_length = cycle_index_max - cycle_index_min + 1  # Calculate cycle length
 
-        if cycle_length >= 40:  # Include cycles with at least XYZ points
+        if cycle_length >= 20:  # Include cycles with at least XYZ points
             cycle_values = data_filtered.loc[cycle_index_min:cycle_index_max, 'WE(1).Potential (V)']
             mean_value = cycle_values.mean()
             threshold = 0.02 * mean_value  # Threshold for excluding points (2% of the mean value)
@@ -118,7 +118,7 @@ def assign_STDP_cycles(data, variation, voltage, cycle_name):
     data_filtered = data
     data_filtered = data_filtered[data_filtered[cycle_name].notna()]
     # print('data_unfiltered:', data)
-    # print('data_filtered:', data_filtered)
+    print('data_filtered:', data_filtered)
     # data_filtered.to_csv("filtered_data.txt", index=False)
 
     return data

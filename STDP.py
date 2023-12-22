@@ -4,9 +4,9 @@ import pandas as pd
 import numpy as np
 from functions.data_managment.loaders import *
 from functions.data_managment.savers import saver_data_STDP, saver_STDP
-from functions.assigners.assign_cycles_STDP import assign_STDP_cycles, assign_STDP_reset_cycles
+from functions.assigners.assign_cycles_STDP import *
 import csv
-from functions.extractors.extract_STDP import extract_STDP
+from functions.extractors.extract_STDP import *
 from functions.plotters.plotter_SRDP import plotter_SRDP_CA_assigning_cycles, plotter_SRDP_I_vs_peak, plotter_SRDP_reads_peaks_dt
 
 # sth similar to IIFE
@@ -20,51 +20,39 @@ def main():
     # Here you put list of files with STDP data. If it is empty it will ask for path.
     list_filenames = [
 
-        'dataSTDP/stdp.txt',
-        'dataSTDP/stdp(1).txt',
-        'dataSTDP/stdp(2).txt',
-        'dataSTDP/stdp(3).txt',
-        'dataSTDP/stdp(4).txt',
-        'dataSTDP/stdp(5).txt',
-        'dataSTDP/stdp(6).txt',
-        'dataSTDP/stdp(7).txt',
-        'dataSTDP/stdp(8).txt',
-        'dataSTDP/stdp(9).txt',
-        'dataSTDP/stdp(10).txt',
-        'dataSTDP/stdp(11).txt',
-        'dataSTDP/stdp(12).txt',
-        'dataSTDP/stdp(13).txt',
-        'dataSTDP/stdp(14).txt',
-        'dataSTDP/stdp(15).txt',
-        'dataSTDP/stdp(16).txt',
-        'dataSTDP/stdp(17).txt',
-        'dataSTDP/stdp(18).txt',
-        'dataSTDP/stdp(19).txt',
-        'dataSTDP/stdp(20).txt',
-        'dataSTDP/stdp(21).txt',
-        'dataSTDP/stdp(22).txt',
-        'dataSTDP/stdp(23).txt',
-        'dataSTDP/stdp(24).txt',
-        'dataSTDP/stdp(25).txt',
-        'dataSTDP/stdp(26).txt',
-        'dataSTDP/stdp(27).txt',
-        'dataSTDP/stdp(28).txt',
-        'dataSTDP/stdp(29).txt',
-        'dataSTDP/stdp(30).txt',
+        './dataSTDP/stdp(27).txt',
+        # './dataSTDP/stdp(1).txt',
 
-
-        # 'dataSTDP/stdp(31).txt',
-        # 'dataSTDP/stdp(32).txt',
-        # 'dataSTDP/stdp(33).txt',
-        # 'dataSTDP/stdp(34).txt',
-        # 'dataSTDP/stdp(35).txt',
-        # 'dataSTDP/stdp(36).txt',
-        # 'dataSTDP/stdp(37).txt',
-        # 'dataSTDP/stdp(38).txt',
-        # 'dataSTDP/stdp(39).txt',
-        # 'dataSTDP/stdp(40).txt',
-
-
+        # './dataSTDP/stdp(10).txt',
+        # './dataSTDP/stdp(11).txt',
+        # './dataSTDP/stdp(12).txt',
+        # './dataSTDP/stdp(13).txt',
+        # './dataSTDP/stdp(14).txt',
+        # './dataSTDP/stdp(15).txt',
+        # './dataSTDP/stdp(16).txt',
+        # './dataSTDP/stdp(17).txt',
+        # './dataSTDP/stdp(18).txt',
+        # './dataSTDP/stdp(19).txt',
+        # './dataSTDP/stdp(2).txt',
+        # './dataSTDP/stdp(20).txt',
+        # './dataSTDP/stdp(21).txt',
+        # './dataSTDP/stdp(22).txt',
+        # './dataSTDP/stdp(23).txt',
+        # './dataSTDP/stdp(24).txt',
+        # './dataSTDP/stdp(25).txt',
+        # './dataSTDP/stdp(26).txt',
+        # './dataSTDP/stdp(27).txt',
+        # './dataSTDP/stdp(28).txt',
+        # './dataSTDP/stdp(29).txt',
+        # './dataSTDP/stdp(3).txt',
+        # './dataSTDP/stdp(30).txt',
+        # './dataSTDP/stdp(4).txt',
+        # './dataSTDP/stdp(5).txt',
+        # './dataSTDP/stdp(6).txt',
+        # './dataSTDP/stdp(7).txt',
+        # './dataSTDP/stdp(8).txt',
+        # './dataSTDP/stdp(9).txt',
+        # './dataSTDP/stdp.txt'
 
     ]
 
@@ -83,6 +71,7 @@ def main():
     save_STDP = True
     save_reads = True
     save_resets = True
+    no_of_reads = 6 #missing description!
     # find_odd_ones_out = True
 
     # plot_assigning = True
@@ -96,13 +85,13 @@ def main():
     # hardcoded_stdp2_V = None
     # hardcoded_reset_V = None
     hardcoded_bias_V = 0
-    hardcoded_read_V = 0.209
+    hardcoded_read_V = +0.168
     hardcoded_stdp1_V = -0.00
     hardcoded_stdp2_V = +0.00
-    hardcoded_reset_V = +2.3 # POSITIVE exp01 & exp03| NEGATIVE exp02 & exp04
+    hardcoded_reset_V = +1.90  # POSITIVE exp01 & exp03| NEGATIVE exp02 & exp04
 
     starting_dt = 0.0000 #change if your first file is connected with dt other than 0!!!
-    number_of_sequences = 3 #number of sequences to be taken into calculations
+    number_of_sequences = 2 #number of sequences to be taken into calculations
     starting_reset = 1 #reading after N-th reset
     variation = 0.1# typically you should put +/- 15% variations of the of the signals
     bsl_corr = 0.0000 #adding several uA or mA to the backgoround / USE ONLY IF NECESSARY /  TO DO: change it to average of the backgorund
@@ -167,11 +156,13 @@ def main():
             prefix = "reset_peaks_"
 
             #making folder for saving RESETs
-            folder_name = filename.replace("/", " ").split()[0] + "/" + prefix +"/"
+            folder_name =filename.replace("/", " ").split()[0] + "/" + prefix +"/"
+            print("@@@@@@@@@@@@@@@@@@@@@@ resets   " + folder_name)
+            print(filename.replace("/", " ").split())
             os.makedirs(folder_name, exist_ok=True)
 
 
-            output_filename = filename.replace("/", " ").split()[0] + "/" + prefix +"/" + f'{prefix}{filename.replace("/", " ").split()[1]}'
+            output_filename = filename.replace("/", " ").split()[0] + "/" + prefix +"/" + f'{prefix}{filename.replace("/", " ").split()[2]}'
             print(f'\n Saving RESET peaks as {output_filename}')
 
             with open(output_filename, 'w', newline='') as file:
@@ -206,14 +197,14 @@ def main():
 
         # Assign STDP cycles for read peaks
         cycle_name = 'read_cycle'
-        data = assign_STDP_cycles(truncated_data, variation, read_V, cycle_name)
+        data = assign_STDP_read_cycles(truncated_data, variation, read_V, cycle_name)
         peaks = data[data[cycle_name].notna()] #show only peaks for read cycles
 
-        max_sequence = int(data['read_cycle'].max() / 6) #because the full read cycle is 3x before and 3x after
+        max_sequence = int(data['read_cycle'].max() / no_of_reads) #because the full read cycle is 3x before and 3x after
         print('max iterator: ', max_sequence)
         max_iterator = min(max_sequence, number_of_sequences)  # (take either number of cycels or the maximum availible)
 
-        peaks = peaks[peaks[cycle_name] <= max_iterator * 6]
+        peaks = peaks[peaks[cycle_name] <= max_iterator * no_of_reads]
 
         # print('READ peaks: ', peaks, data)
 
@@ -222,9 +213,10 @@ def main():
 
             #making folder for saving READs
             folder_name = filename.replace("/", " ").split()[0] + "/" + prefix +"/"
+            print(folder_name)
             os.makedirs(folder_name, exist_ok=True)
 
-            output_filename = filename.replace("/", " ").split()[0] + "/" + prefix +"/" + f'{prefix}{filename.replace("/", " ").split()[1]}'
+            output_filename = filename.replace("/", " ").split()[0] + "/" + prefix +"/" + f'{prefix}{filename.replace("/", " ").split()[2]}'
             print(f'\n Saving READ peaks as {output_filename}')
 
             with open(output_filename, 'w', newline='') as file:
@@ -247,7 +239,14 @@ def main():
         # print('dt - 2nd and 3rd last read:', dt)
 
         # Extract STDP for reads and peaks:
-        data_STDP = extract_STDP(data, number_of_sequences)
+        if no_of_reads == 6:
+            data_STDP = extract_STDP(data, number_of_sequences)
+        elif no_of_reads == 2:
+            data_STDP = extract_STDP_1xREAD(data, number_of_sequences)
+        else:
+            pass
+        # Handle other cases or provide a default behavior
+
         # print(f'data_STDP:\n{data_STDP}')
 
         if save_data == True:
@@ -287,3 +286,4 @@ def main():
     return data, STDP
 
 del(main)
+

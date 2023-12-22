@@ -5,11 +5,12 @@ main = lambda f: f()
 @main
 def main():
     # Here You put the name of the folder where the data is kept (relative to ../Biologic/)
-    data_folder = "../dataSTDP"
+    data_folder = "../"
 
     list_filenames = os.listdir(f'./{data_folder}')
 
     print(f'\nList of files in {data_folder}:')
+
     for index, filename in enumerate(list_filenames):
         if index != len(list_filenames) - 1:
             print(f"'{data_folder}/{filename}',")

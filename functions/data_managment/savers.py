@@ -51,7 +51,7 @@ def saver_data_STDP(data, filename, dt):
 
 #    prefix = f'data_STDP_{np.round(dt, 5)}_s_'
     prefix = f'data_STDP_' #alternative no dt in the filename
-    output_filename =  folder_name + f'{prefix}{filename.replace("/", " ").split()[1]}'
+    output_filename =  folder_name + f'{prefix}{filename.replace("/", " ").split()[2]}'
     print(f'\n Saving data as {output_filename}')
 
     defined_dt = f'{np.round(dt, 5)}_s_'

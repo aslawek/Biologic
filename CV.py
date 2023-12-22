@@ -15,12 +15,16 @@ def main():
 
     # Here you put list of files with CV data. If it is empty it will ask for path.
     list_filenames = [
-        'data_examples/CV.mpt',
+        './el07_IV-scan-initial_C01_1to3_01_CV_C01.txt',
+        './el07_IV-scan-initial_C01_1to3_02_CV_C01.txt',
+        './el07_IV-scan-initial_C01_1to3_03_CV_C01.txt',
+        './el07_IV-scan-initial_C01_1to3_04_CV_C01.txt',
+        './el07_IV-scan-initial_C01_1to3_05_CV_C01.txt',
     ]
 
     assign_cycles = True                # <- number cycles of CV
     filter_by_cycles_ranges = []        # <- here put pairs of ranges for filtering cycles (leave [] if not necessary)
-    save_data = False                   # <- for saving data (as out_{filename})
+    save_data = True                   # <- for saving data (as out_{filename})
 
     # For plotting:
     plot_CV_simple = False

@@ -16,15 +16,17 @@ def main():
 
     # Here you put list of files with CV data. If it is empty it will ask for path.
     list_filenames = [
-        './dataSRDP/el09_40_01_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-10-50-100-200-500ms_04_CA_C02.txt',
-        './dataSRDP/el09_40_01_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-10-50-100-200-500ms_07_CA_C02.txt',
-        './dataSRDP/el09_40_01_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-10-50-100-200-500ms_10_CA_C02.txt',
-        './dataSRDP/el09_40_01_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-10-50-100-200-500ms_13_CA_C02.txt',
-        './dataSRDP/el09_40_01_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-10-50-100-200-500ms_16_CA_C02.txt',
-        './dataSRDP/el09_41_02_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-1-2-5s_02_CA_C02.txt',
-        './dataSRDP/el09_41_02_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-1-2-5s_05_CA_C02.txt',
-        './dataSRDP/el09_41_02_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-1-2-5s_08_CA_C02.txt',
-        './dataSRDP/el09_42_03_srdp6x-1p5V_30xP1p35V-rM500mV_t10ms-dt-10s_02_CA_C02.txt'
+
+        './dataCV/epsc__1_01_epsc5x_cond0p6V_30xpulse-P0p30V-rP50mV_t01ms-dt-10-50-100-200-500ms_04_CA_C01.txt',
+        './dataCV/epsc__1_01_epsc5x_cond0p6V_30xpulse-P0p30V-rP50mV_t01ms-dt-10-50-100-200-500ms_07_CA_C01.txt',
+        './dataCV/epsc__1_01_epsc5x_cond0p6V_30xpulse-P0p30V-rP50mV_t01ms-dt-10-50-100-200-500ms_10_CA_C01.txt',
+        './dataCV/epsc__1_01_epsc5x_cond0p6V_30xpulse-P0p30V-rP50mV_t01ms-dt-10-50-100-200-500ms_13_CA_C01.txt',
+        './dataCV/epsc__1_01_epsc5x_cond0p6V_30xpulse-P0p30V-rP50mV_t01ms-dt-10-50-100-200-500ms_16_CA_C01.txt',
+        './dataCV/epsc__2_02_epsc5x_cond0p6V_30xpulse-P0p30V-rP50mV_t01ms-dt-1-2-5s-NO-initial-CV_02_CA_C01.txt',
+        './dataCV/epsc__2_02_epsc5x_cond0p6V_30xpulse-P0p30V-rP50mV_t01ms-dt-1-2-5s-NO-initial-CV_05_CA_C01.txt',
+        './dataCV/epsc__2_02_epsc5x_cond0p6V_30xpulse-P0p30V-rP50mV_t01ms-dt-1-2-5s-NO-initial-CV_08_CA_C01.txt',
+        './dataCV/epsc__3_03_epsc5x_cond0p6V_30xpulse-P0p30V-rP50mV_t01ms-dt-10SEKUND-NO-initial-CV_02_CA_C01.txt',
+
     ]
 
     save_data = False           # this saves 4-column data with SRDP peaks and reads assigned

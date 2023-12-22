@@ -16,15 +16,17 @@ def main():
 
     # Here you put list of files with CV data. If it is empty it will ask for path.
     list_filenames = [
-        'data_examples/CA_retention.mpt'
+
+        './el04_on-off_retention_06_CA_C01.txt',
     ]
 
     # Put your on-off sequence here:
     sequence = ['bias', 'read']
+    #sequence = ['bias', 'set', 'bias', 'read']
 
     extract_retention = True    # <- for extracting retention
     save_data = False           # <- for saving data (as out_{filename})
-    save_retention = False      # <- for saving on-offs (as ON-OFF_{filename})
+    save_retention = True      # <- for saving on-offs (as ON-OFF_{filename})
 
     # For plotting:
     plot_CA_simple = True
